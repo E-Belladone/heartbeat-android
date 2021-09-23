@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.technicallyfunctional.digitalheartbeat.R
-import com.technicallyfunctional.digitalheartbeat.databinding.FragmentFirstBinding
+import com.technicallyfunctional.digitalheartbeat.databinding.FragmentStatusBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class StatusFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentStatusBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,7 +27,7 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentStatusBinding.inflate(inflater, container, false)
 
         return binding.root
 

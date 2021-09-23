@@ -3,26 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/StatusFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.technicallyfunctional.digitalheartbeat.FirstFragment"
+        android:id="@+id/StatusFragment"
+        android:name="com.technicallyfunctional.digitalheartbeat.StatusFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_status">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SettingsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.technicallyfunctional.digitalheartbeat.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/SettingsFragment"
+        android:name="com.technicallyfunctional.digitalheartbeat.SettingsFragment2"
+        android:label="@string/second_fragment_label">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/StatusFragment" />
     </fragment>
 </navigation>

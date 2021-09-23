@@ -25,11 +25,11 @@ class HeartbeatStatus : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.floatingActionButton.setOnClickListener { view ->
+        binding.floatingActionButton.setOnClickListener { _ ->
             val controller = findNavController(R.id.nav_host_fragment_content_heartbeat_status);
             when (controller.currentDestination?.id) {
-                R.id.FirstFragment -> controller.navigate(R.id.action_FirstFragment_to_SecondFragment)
-                R.id.SecondFragment -> controller.navigate(R.id.action_SecondFragment_to_FirstFragment)
+                R.id.StatusFragment -> controller.navigate(R.id.action_FirstFragment_to_SecondFragment)
+                R.id.SettingsFragment -> controller.navigate(R.id.action_SecondFragment_to_FirstFragment)
                 else -> {
                     throw Error("Invalid navigation controller state")
                 }

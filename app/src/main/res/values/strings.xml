@@ -12,7 +12,30 @@
     <string name="status_not_running">Not Running</string>
     <string name="status_error">ERROR</string>
     <string name="status_unknown">Unknown</string>
-    <string name="status_last_push_datetime">Last upload time:</string>
-    <string name="status_last_push_info">Information pushed:</string>
-    <string name="status_last_push_location">Last location pushed:</string>
+    <string name="status_last_push_datetime">Last upload time</string>
+    <string name="status_last_push_info">Information pushed</string>
+    <string name="status_last_push_location">Last location pushed</string>
+
+    <!-- Preference Titles -->
+    <string name="settings_server_header">Server</string>
+    <string name="settings_sync_header">Sync</string>
+    <string name="settings_app">User Interface</string>
+
+    <!-- Server Preferences -->
+    <string name="setting_server_hostname">Server Hostname / IP</string>
+
+    <string name="setting_server_port">Port Number</string>
+
+    <!-- Sync Preferences -->
+    <string name="setting_sync_location">Upload location</string>
+    <string name="setting_sync_location_summary">Uploads your location with your status.</string>
+
+    <string name="setting_sync_battery">Upload battery status</string>
+    <string name="setting_sync_battery_summary">Uploads battery percentage with status.</string>
+
+    <!-- UI Preferences -->
+    <string name="setting_ui_theme">Theme</string>
+
+    <string name="setting_ui_show_ads">Show Advertisements</string>
+    <string name="setting_ui_show_ads_summary">Like donating, but cheaper.</string>
 </resources>

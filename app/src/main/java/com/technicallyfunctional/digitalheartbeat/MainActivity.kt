@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.technicallyfunctional.digitalheartbeat.ui.main.SectionsPagerAdapter
-import com.technicallyfunctional.digitalheartbeat.databinding.ActivityMainBinding
+import technicallyfunctional.digitalheartbeat.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

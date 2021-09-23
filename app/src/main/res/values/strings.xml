@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">Digital Heartbeat</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_heartbeat_status">HeartbeatStatus</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Service Status</string>
+    <string name="second_fragment_label">Service Settings</string>
+    <string name="next">Settings</string>
+    <string name="previous">Back</string>
+
+    <string name="status_fragment_text">Current status:</string>
+    <string name="status_running">Running</string>
+    <string name="status_not_running">Not Running</string>
+    <string name="status_error">ERROR</string>
+    <string name="status_unknown">Unknown</string>
+    <string name="status_last_push_datetime">Last upload time:</string>
+    <string name="status_last_push_info">Information pushed:</string>
+    <string name="status_last_push_location">Last location pushed:</string>
 </resources>

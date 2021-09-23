@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="technicallyfunctional.digitalheartbeat">
+    package="com.technicallyfunctional.digitalheartbeat" >
 
     <application
         android:allowBackup="true"
@@ -8,15 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DigitalHeartbeat">
+        android:theme="@style/Theme.DigitalHeartbeat" >
         <activity
-            android:name="com.technicallyfunctional.digitalheartbeat.MainActivity"
+            android:name=".HeartbeatStatus"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="@string/title_activity_heartbeat_status"
             android:theme="@style/Theme.DigitalHeartbeat.NoActionBar">
-            <intent-filter>
+            <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

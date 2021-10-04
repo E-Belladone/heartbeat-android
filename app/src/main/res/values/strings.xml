@@ -16,6 +16,9 @@
     <string name="status_last_push_info">Information pushed</string>
     <string name="status_last_push_location">Last location pushed</string>
 
+    <string name="start_hb">Start</string>
+    <string name="stop_hb">Stop</string>
+
     <!-- Preference Titles -->
     <string name="settings_server_header">Server</string>
     <string name="settings_sync_header">Sync</string>
@@ -25,6 +28,9 @@
     <string name="setting_server_hostname">Server Hostname / IP</string>
 
     <string name="setting_server_port">Port Number</string>
+
+    <string name="setting_server_authentication">Authentication Code</string>
+    <string name="setting_device_name">Device Name</string>
 
     <!-- Sync Preferences -->
     <string name="setting_sync_location">Upload location</string>

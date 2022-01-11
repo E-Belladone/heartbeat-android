@@ -19,6 +19,12 @@
     <string name="start_hb">Start</string>
     <string name="stop_hb">Stop</string>
 
+    <!-- Notification System strings -->
+    <string name="fgservice_notification_channel_name">Foreground Service</string>
+    <string name="fgservice_notification_title">Heartbeat Status</string>
+    <string name="fgservice_notification_content_text">Heartbeat is Running</string>
+
+
     <!-- Preference Titles -->
     <string name="settings_server_header">Server</string>
     <string name="settings_sync_header">Sync</string>
@@ -44,4 +50,5 @@
 
     <string name="setting_ui_show_ads">Show Advertisements</string>
     <string name="setting_ui_show_ads_summary">Like donating, but cheaper.</string>
+    <string name="buttonUpdateUI">Update UI</string>
 </resources>

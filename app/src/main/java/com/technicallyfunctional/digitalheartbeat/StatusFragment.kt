@@ -66,6 +66,7 @@ class StatusFragment : Fragment() {
                 requireContext().applicationContext.startForegroundService(intent)
             else
                 requireContext().applicationContext.startService(intent)
+            binding.textViewStatus.text = "Starting"
         }
     }
 

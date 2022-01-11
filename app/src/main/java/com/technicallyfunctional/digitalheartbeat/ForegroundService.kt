@@ -2,10 +2,7 @@ package com.technicallyfunctional.digitalheartbeat
 
 import android.annotation.SuppressLint
 import android.app.*
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.content.SharedPreferences
+import android.content.*
 import android.location.Location
 import android.net.Uri
 import android.os.Build
@@ -13,6 +10,7 @@ import android.os.IBinder
 import android.os.IInterface
 import android.os.Parcel
 import androidx.preference.PreferenceManager
+import com.technicallyfunctional.digitalheartbeat.StatusFragment.Companion.ACTION_UPDATE
 import java.io.FileDescriptor
 import java.time.Instant
 
@@ -46,6 +44,10 @@ class ForegroundService: Service() {
     private var notification: Notification? = null
     private var notificationManager: NotificationManager? = null
 
+    private var status: String = ""
+    private var subStatus: String = ""
+    private var details: String = ""
+
     private var defaultSharedPreferences: SharedPreferences? = null
 
     override fun onBind(intent: Intent?): IBinder {
@@ -71,7 +73,32 @@ class ForegroundService: Service() {
             since = Instant.now()
             bgService.since = since
         }
+        bgService.notification = notification
+        val notificationUpdateReceiver: NotificationUpdateReceiver = NotificationUpdateReceiver()
+        notificationUpdateReceiver.foregroundService = this
+        context?.registerReceiver(notificationUpdateReceiver, IntentFilter(ACTION_UPDATE))
         return START_STICKY
+    }
+
+    class NotificationUpdateReceiver: BroadcastReceiver() {
+        var foregroundService: ForegroundService? = null
+
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent != null) {
+                if (intent.action == ACTION_UPDATE) {
+                    if (intent.extras != null) {
+                        foregroundService?.status = intent.extras!!.getString("status").toString()
+                        foregroundService?.subStatus = intent.extras!!.getString("substatus").toString()
+                        foregroundService?.details = intent.extras!!.getString("statusdetails").toString()
+
+                        foregroundService?.createNotification()
+
+                        foregroundService?.notificationManager?.notify(1, foregroundService?.notification)
+                    }
+                }
+            }
+        }
+
     }
 
     @SuppressLint("NewApi")
@@ -88,6 +115,14 @@ class ForegroundService: Service() {
     private fun createNotification() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(defaultSharedPreferences?.getString("server_hostname", "https://hb.l1v.in/"))
+        val notificationStatus: String = if(status != "")
+            status
+        else
+            getText(R.string.fgservice_notification_title) as String
+        val notificationSubStatus: String = if(subStatus != "")
+            "$subStatus\n$details"
+        else
+            getText(R.string.fgservice_notification_content_text) as String
         val pendingIntent = TaskStackBuilder.create(context).run {
             addNextIntentWithParentStack(intent)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -98,18 +133,19 @@ class ForegroundService: Service() {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notification = Notification.Builder(context, "fgservice")
-                .setContentTitle(getText(R.string.fgservice_notification_title))
-                .setContentText(getText(R.string.fgservice_notification_content_text))
+                .setContentTitle(notificationStatus)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentIntent(pendingIntent)
+                .setStyle(Notification.BigTextStyle().bigText(notificationSubStatus))
                 .build()
         } else {
             @Suppress("DEPRECATION")
             notification = Notification.Builder(context)
-                .setContentTitle(getText(R.string.fgservice_notification_title))
-                .setContentText(getText(R.string.fgservice_notification_content_text))
+                .setContentTitle(notificationStatus)
+                .setContentText(notificationSubStatus)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentIntent(pendingIntent)
+                .setStyle(Notification.BigTextStyle().bigText(notificationSubStatus))
                 .build()
         }
     }

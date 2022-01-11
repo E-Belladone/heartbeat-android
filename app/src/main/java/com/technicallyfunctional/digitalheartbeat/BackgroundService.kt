@@ -1,6 +1,9 @@
 package com.technicallyfunctional.digitalheartbeat
 
 import android.Manifest
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Context.BATTERY_SERVICE
@@ -49,6 +52,10 @@ class BackgroundService : BroadcastReceiver() {
     var lastUpdateTimestamp: Int = 0
     var lastLocation: Location? = null
     var lastBattery: String = ""
+
+    var notification: Notification? = null
+    var notificationChannel: NotificationChannel? = null
+    var notificationManager: NotificationManager? = null
 
     override fun peekService(myContext: Context?, service: Intent?): IBinder {
         return super.peekService(myContext, service)
@@ -174,15 +181,27 @@ class BackgroundService : BroadcastReceiver() {
                 lastUpdateTimestamp = response.trim().toInt()
                 val updateIntent: Intent = Intent(StatusFragment.ACTION_UPDATE)
                 val bundle = Bundle()
-                bundle.putString("status", "Running")
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    bundle.putString("substatus", "As of ${since.toString()}")
+
+
+                var status = "Running"
+                var subStatus = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    "As of ${since.toString()}"
                 } else {
-                    bundle.putString("substatus", "Instant.now() not supported")
+                    "Instant.now() not supported"
                 }
-                bundle.putString("statusdetails", "Last battery: $lastBattery\n" +
-                        "Last location: (lat ${lastLocation?.latitude} lon ${lastLocation?.longitude})\n" +
-                        "Last ping: $lastUpdateTimestamp")
+                var statusDetails = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    "Last battery: $lastBattery\n" +
+                            "Last location: (lat ${lastLocation?.latitude} lon ${lastLocation?.longitude})\n" +
+                            "Last ping: ${Instant.ofEpochSecond(lastUpdateTimestamp.toLong())}"
+                }
+                else {
+                    "Last battery: $lastBattery\n" +
+                            "Last location: (lat ${lastLocation?.latitude} lon ${lastLocation?.longitude})\n" +
+                            "Last ping: $lastUpdateTimestamp"
+                }
+                bundle.putString("status", status)
+                bundle.putString("substatus", subStatus)
+                bundle.putString("statusdetails", statusDetails)
                 updateIntent.putExtras(bundle)
                 context!!.sendBroadcast(updateIntent)
 
@@ -192,4 +211,5 @@ class BackgroundService : BroadcastReceiver() {
             }
         }.start()
     }
+
 }

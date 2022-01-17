@@ -39,6 +39,10 @@
         android:key="sync_battery"
         android:summary="@string/setting_sync_battery_summary"
         android:title="@string/setting_sync_battery" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="start_on_boot"
+        android:title="Start Heartbeat on Boot" />
     <PreferenceCategory android:title="@string/settings_app">
 
         <SwitchPreference

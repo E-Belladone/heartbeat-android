@@ -1,11 +1,14 @@
 package com.technicallyfunctional.digitalheartbeat
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.preference.PreferenceManager
 import com.technicallyfunctional.digitalheartbeat.databinding.ActivityHeartbeatStatusBinding
 
 class HeartbeatStatus : AppCompatActivity() {
@@ -15,6 +18,24 @@ class HeartbeatStatus : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        when (defaultSharedPreferences.getString("ui_theme", "default"))
+        {
+            "light" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            "dark" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            "default" -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+            else -> {
+                Log.i("HeartbeatStatus.kt:32", "Invalid theme setting")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        }
 
         binding = ActivityHeartbeatStatusBinding.inflate(layoutInflater)
         setContentView(binding.root)

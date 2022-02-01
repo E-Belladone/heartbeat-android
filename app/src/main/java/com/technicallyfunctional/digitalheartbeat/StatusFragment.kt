@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,6 +81,16 @@ class StatusFragment : Fragment() {
         if (updateReceiver == null) updateReceiver = UpdateReceiver()
 
         requireContext().registerReceiver(updateReceiver, intentFilter)
+    }
+
+    override fun onDestroy() {
+        try {
+            requireContext().unregisterReceiver(updateReceiver)
+        } catch (e: Exception){
+            Log.i("StatusFragment.kt:89", "Receiver not registered, no need to unregister.")
+        }
+        updateReceiver = null
+        super.onDestroy()
     }
 
     class UpdateReceiver : BroadcastReceiver() {

@@ -3,7 +3,6 @@ package com.technicallyfunctional.digitalheartbeat
 import android.annotation.SuppressLint
 import android.app.*
 import android.content.*
-import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.IBinder
@@ -18,11 +17,11 @@ class ForegroundService: Service() {
     class TRANSACTION
     {
         companion object {
-            val GET_STATUS: Int = 1
-            val GET_LAST_PING: Int = 2
-            val GET_LAST_LOCATION: Int = 3
-            val GET_LAST_BATTERY: Int = 4
-            val GET_LAST_ERROR: Int = 5
+            const val GET_STATUS: Int = 1
+            const val GET_LAST_PING: Int = 2
+            const val GET_LAST_LOCATION: Int = 3
+            const val GET_LAST_BATTERY: Int = 4
+            const val GET_LAST_ERROR: Int = 5
         }
     }
 
@@ -35,10 +34,9 @@ class ForegroundService: Service() {
 
     private val bgService = BackgroundService()
 
-    var lastLocation: Location? = null
     var lastError: String = ""
 
-    var context: Context? = null
+    private var context: Context? = null
 
     private var notificationChannel: NotificationChannel? = null
     private var notification: Notification? = null
@@ -56,7 +54,7 @@ class ForegroundService: Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         context = baseContext
-        defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context!!)
         if (notificationChannel == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             createNotificationChannel()
         if (notification == null)
@@ -157,9 +155,6 @@ class ForegroundService: Service() {
     }
 
     inner class Binder : IBinder {
-        public fun getService() : ForegroundService {
-            return this@ForegroundService
-        }
 
         override fun getInterfaceDescriptor(): String {
             return "HeartbeatService"

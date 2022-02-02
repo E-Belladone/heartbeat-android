@@ -12,16 +12,27 @@
         tools:layout="@layout/fragment_status">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SettingsFragment" />
+            android:id="@+id/action_StatusFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_StatusFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/SettingsFragment"
-        android:name="com.technicallyfunctional.digitalheartbeat.SettingsFragment2"
-        android:label="@string/second_fragment_label">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/StatusFragment" />
-    </fragment>
+        android:name="com.technicallyfunctional.digitalheartbeat.SettingsFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.technicallyfunctional.digitalheartbeat.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>

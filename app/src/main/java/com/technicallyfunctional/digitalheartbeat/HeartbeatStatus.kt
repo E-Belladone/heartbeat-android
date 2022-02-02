@@ -2,6 +2,7 @@ package com.technicallyfunctional.digitalheartbeat
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
@@ -42,25 +43,48 @@ class HeartbeatStatus : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            val navController = findNavController(R.id.nav_host_fragment_content_heartbeat_status)
+            when (menuItem.itemId) {
+                R.id.menu_about -> {
+                    navController.navigate(R.id.action_StatusFragment_to_aboutFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.menu_settings -> {
+                    navController.navigate(R.id.action_StatusFragment_to_SettingsFragment)
+                    return@setOnMenuItemClickListener true
+                }
+                else -> {
+                    return@setOnMenuItemClickListener false
+                }
+            }
+        }
+
         val navController = findNavController(R.id.nav_host_fragment_content_heartbeat_status)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.floatingActionButton.setOnClickListener { _ ->
-            val controller = findNavController(R.id.nav_host_fragment_content_heartbeat_status);
-            when (controller.currentDestination?.id) {
-                R.id.StatusFragment -> controller.navigate(R.id.action_FirstFragment_to_SecondFragment)
-                R.id.SettingsFragment -> controller.navigate(R.id.action_SecondFragment_to_FirstFragment)
-                else -> {
-                    throw Error("Invalid navigation controller state")
-                }
-            }
-        }
+//        binding.floatingActionButton.setOnClickListener {
+//            val controller = findNavController(R.id.nav_host_fragment_content_heartbeat_status)
+//            when (controller.currentDestination?.id) {
+//                R.id.StatusFragment -> controller.navigate(R.id.action_StatusFragment_to_SettingsFragment)
+//                R.id.SettingsFragment -> controller.navigate(R.id.action_SecondFragment_to_FirstFragment)
+//                else -> {
+//                    throw Error("Invalid navigation controller state")
+//                }
+//            }
+//        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_heartbeat_status)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.topbar, menu)
+        return true
     }
 }

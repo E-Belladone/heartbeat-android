@@ -24,8 +24,7 @@ import com.technicallyfunctional.digitalheartbeat.databinding.FragmentStatusBind
  */
 class StatusFragment : Fragment() {
     companion object {
-        val ACTION_REQUEST_UPDATE: String = "ACTION_REQUEST_UPDATE"
-        val ACTION_UPDATE: String = "ACTION_UPDATE"
+        const val ACTION_UPDATE: String = "ACTION_UPDATE"
 
         var Status: String = "Unknown"
         var SubStatus: String = "Unknown"
@@ -43,7 +42,7 @@ class StatusFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         fragmentStatusBinding = FragmentStatusBinding.inflate(inflater, container, false)
 
@@ -55,7 +54,7 @@ class StatusFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonStartStop.setOnClickListener{
-            val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
             if (defaultSharedPreferences.getBoolean("sync_location", false)) {
                 if (!isLocationPermissionGranted())
                     Toast.makeText(requireContext(), "Permission not granted", Toast.LENGTH_SHORT).show()

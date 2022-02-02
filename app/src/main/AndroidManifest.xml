@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.technicallyfunctional.digitalheartbeat" >
+    package="com.technicallyfunctional.digitalheartbeat">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DigitalHeartbeat" >
-        <service android:name=".ForegroundService" android:foregroundServiceType="dataSync"/>
+        android:theme="@style/Theme.DigitalHeartbeat">
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:label="@string/title_activity_about"
+            android:theme="@style/Theme.DigitalHeartbeat.NoActionBar" />
+
+        <service
+            android:name=".ForegroundService"
+            android:foregroundServiceType="dataSync" />
+
         <activity
             android:name=".HeartbeatStatus"
             android:exported="true"
             android:label="@string/title_activity_heartbeat_status"
             android:theme="@style/Theme.DigitalHeartbeat.NoActionBar">
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".OnBootReceiver" android:exported="true">
+
+        <receiver
+            android:name=".OnBootReceiver"
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>

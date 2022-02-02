@@ -46,7 +46,6 @@
     <PreferenceCategory android:title="@string/settings_app">
 
         <SwitchPreference
-            android:id="@+id/ui_show_ads"
             android:defaultValue="true"
             android:key="switch_preference_1"
             android:summary="@string/setting_ui_show_ads_summary"

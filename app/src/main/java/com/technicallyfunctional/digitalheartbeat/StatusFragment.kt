@@ -17,7 +17,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.technicallyfunctional.digitalheartbeat.databinding.FragmentStatusBinding
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -67,6 +71,14 @@ class StatusFragment : Fragment() {
             else
                 requireContext().applicationContext.startService(intent)
             binding.textViewStatus.text = "Starting"
+        }
+        val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        if (defaultSharedPreferences.getBoolean("showAds", false))
+        {
+            val adView = view.findViewById<AdView>(R.id.adView)
+            MobileAds.initialize(requireContext()) {}
+            val adRequest = AdRequest.Builder().build()
+            adView.loadAd(adRequest)
         }
     }
 

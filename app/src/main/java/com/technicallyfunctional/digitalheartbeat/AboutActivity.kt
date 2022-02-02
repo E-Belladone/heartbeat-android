@@ -24,6 +24,8 @@ class AboutActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_heartbeat_status)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

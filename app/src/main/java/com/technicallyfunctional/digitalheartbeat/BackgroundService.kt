@@ -144,19 +144,21 @@ class BackgroundService : BroadcastReceiver() {
                 query += "}"
                 Log.i("BGService-Ping", "Data collected")
                 Log.i("BGService-Ping", query)
-                val url = URL("${urlString}:${portString}/api/beat")
+                val url = URL("http://${urlString}:${portString}/api/beat")
+                Log.i("BGService-Ping", url.toString())
                 val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
                 connection.requestMethod = "POST"
                 connection.doInput = true
                 connection.doOutput = true
                 connection.setRequestProperty(
-                    "Auth",
+                    "Authorization",
                     defaultSharedPreferences.getString("server_authentication_code", "")
                 )
                 connection.setRequestProperty(
                     "Device",
                     defaultSharedPreferences.getString("device_name", Build.MODEL)
                 )
+                Log.i("BGService-Ping", connection.toString())
                 connection.connect()
                 Log.i("BGService-Ping", "Connected")
                 OutputStreamWriter(connection.outputStream)

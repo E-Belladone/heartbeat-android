@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.technicallyfunctional.digitalheartbeat"
-        minSdk 16
-        targetSdk 30
+        minSdk 23
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -36,6 +36,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.technicallyfunctional.digitalheartbeat'
 }
 
 dependencies {

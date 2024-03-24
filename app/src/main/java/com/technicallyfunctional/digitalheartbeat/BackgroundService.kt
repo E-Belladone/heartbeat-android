@@ -25,6 +25,7 @@ import java.io.Reader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.time.Instant
+import javax.net.ssl.HttpsURLConnection
 
 class BackgroundService : BroadcastReceiver() {
     private var screenOn = true
@@ -144,9 +145,9 @@ class BackgroundService : BroadcastReceiver() {
                 query += "}"
                 Log.i("BGService-Ping", "Data collected")
                 Log.i("BGService-Ping", query)
-                val url = URL("http://${urlString}:${portString}/api/beat")
+                val url = URL("https://${urlString}:${portString}/api/beat")
                 Log.i("BGService-Ping", url.toString())
-                val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+                val connection: HttpsURLConnection = url.openConnection() as HttpsURLConnection
                 connection.requestMethod = "POST"
                 connection.doInput = true
                 connection.doOutput = true

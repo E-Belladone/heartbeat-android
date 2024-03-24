@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#E899DC</color>
-    <color name="primary_alt">#E899DC</color>
-    <color name="secondary">#8EE3F5</color>
-    <color name="secondary_alt">#8EE3F5</color>
-    <color name="primary_dark">#741A67</color>
-    <color name="primary_alt_dark">#741A67</color>
-    <color name="secondary_dark">#0B6F83</color>
-    <color name="secondary_alt_dark">#0B6F83</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="running_green">#C5E1A5</color>
-    <color name="not_running_red">#FFAB91</color>
+    <color name="primary">#31748f</color>
+    <color name="primary_alt">#286983</color>
+    <color name="secondary">#ebbcba</color>
+    <color name="secondary_alt">#d7827e</color>
+    <color name="primary_dark">#1f1d2e</color>
+    <color name="primary_alt_dark">#393552</color>
+    <color name="secondary_dark">#26233a</color>
+    <color name="secondary_alt_dark">#f2e9e1</color>
+    <color name="black">#191724</color>
+    <color name="white">#c4a7e7</color>
+    <color name="running_green">#9ccfd8</color>
+    <color name="not_running_red">#eb6f92</color>
 </resources>
